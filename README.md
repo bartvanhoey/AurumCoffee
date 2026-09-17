@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aurum Coffee Roasters
 
-## Getting Started
+A product-portfolio website for a fictional premium coffee brand, built with
+Next.js 16 (App Router), React 19 and Tailwind CSS 4. Dark, editorial look with
+serif display type, gold accents, film grain, and looping background video.
 
-First, run the development server:
+## Pages
+
+| Route              | What it is                                                              |
+| ------------------ | ----------------------------------------------------------------------- |
+| `/`                | Home: full-screen video hero, manifesto, featured products, craft, origins rail, newsletter |
+| `/products`        | Portfolio with category filters and sorting (`?category=cold-brew` deep links) |
+| `/products/[slug]` | Product detail: specs, tasting notes, intensity meter, related products |
+| `/roastery`        | The Craft: five process steps, each with its own video                  |
+| `/about`           | Story, timeline, values, team                                           |
+| `/stores`          | Salones (locations) and wholesale                                       |
+| `/contact`         | Contact form and roastery details                                       |
+
+## Running it
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build, all routes prerendered
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Where things live
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `lib/products.ts` — the catalogue (16 products across 5 categories) and helpers.
+- `lib/site.ts` — brand copy, navigation, origins, timeline, team, craft steps, stores.
+- `components/` — `Header`, `Footer`, `VideoBackground`, `Reveal` (scroll-in), `ProductGrid` (filters), `PageHero`, etc.
+- `app/globals.css` — colour tokens, fonts, keyframes, grain overlay, reveal transitions.
+- `public/videos/` — twelve 720p background clips.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Media and licences
 
-## Learn More
+- Videos are free stock clips from [Mixkit](https://mixkit.co/license/) (720p, ~3–10 MB each, ~63 MB total). Swap them for brand footage by replacing the files in `public/videos/`.
+- Photos are loaded from Unsplash via `next/image` (`images.unsplash.com` is allow-listed in `next.config.ts`).
 
-To learn more about Next.js, take a look at the following resources:
+## Notes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Background videos are muted, loop, only play while on screen, and stay on their poster image when the visitor has reduced motion enabled.
+- The brand, people, places and products are invented for this demo.
