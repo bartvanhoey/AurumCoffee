@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# scroll-craft dev artifacts (brief + verification screenshots, not shipped)
+/scrollcraft/

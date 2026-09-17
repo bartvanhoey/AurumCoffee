@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { site } from "@/lib/site";
 import "./globals.css";
+import "./scrollcraft.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,8 +34,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${cormorant.variable} h-full antialiased`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add("sc-js")`,
+          }}
+        />
+      </head>
       <body className="grain min-h-full flex flex-col bg-ink text-cream">
         <Header />
         <main className="flex-1">{children}</main>

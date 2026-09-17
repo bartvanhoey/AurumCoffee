@@ -14,6 +14,8 @@ const eslintConfig = defineConfig([
     "next-env.d.ts",
     // Skill tooling that lives alongside the app, not part of it.
     ".claude/**",
+    // Vendored scroll-craft engine, copied unedited per the skill's own rule.
+    "lib/scrollcraft/scrollcraft.js",
   ]),
 ]);
 

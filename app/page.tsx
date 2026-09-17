@@ -3,8 +3,10 @@ import Link from "next/link";
 import Button from "@/components/Button";
 import Marquee from "@/components/Marquee";
 import Newsletter from "@/components/Newsletter";
+import PourLine from "@/components/PourLine";
 import ProductCard from "@/components/ProductCard";
 import Reveal from "@/components/Reveal";
+import { ScrollCraft } from "@/components/scroll-craft";
 import SectionHeading from "@/components/SectionHeading";
 import VideoBackground from "@/components/VideoBackground";
 import {
@@ -28,58 +30,97 @@ export default function Home() {
   const featured = getFeatured();
 
   return (
-    <>
-      {/* ───────────── Hero ───────────── */}
-      <section className="relative flex min-h-svh items-end overflow-hidden">
-        <VideoBackground
-          src="/videos/hero.mp4"
-          poster={img("1610632380989-680fe40816c6", 1600)}
-          rate={0.8}
-          videoClassName="animate-scale-in"
-        />
-        <div className="scrim-b absolute inset-0" />
-        <div className="scrim-t absolute inset-x-0 top-0 h-48" />
-
-        <div className="relative mx-auto w-full max-w-7xl px-5 pb-20 pt-40 sm:px-8 sm:pb-28">
-          <p
-            className="eyebrow animate-fade-up"
-            style={{ animationDelay: "300ms" }}
-          >
-            Roasted in {site.city} · Est. {site.founded}
-          </p>
-          <h1
-            className="display mt-6 max-w-5xl text-6xl text-cream sm:text-8xl lg:text-[9.5rem] animate-fade-up"
-            style={{ animationDelay: "450ms" }}
-          >
-            Gold standard,
-            <br />
-            <em>cup after cup.</em>
-          </h1>
+    <ScrollCraft>
+      <PourLine peakSelector="#founder-quote" />
+      {/* ───────────── Hero: scrub-lite stage + parallax + kinetic headline ───────────── */}
+      <section
+        data-sc-act="scrub"
+        data-sc-span="1.9"
+        data-sc-dwell="0.3"
+        className="relative"
+      >
+        <div data-sc-stage className="flex items-end overflow-hidden">
+          <img
+            className="sc-stage__poster absolute inset-0 h-full w-full object-cover"
+            src={img("1610632380989-680fe40816c6", 1600)}
+            alt=""
+          />
+          <video
+            data-sc-scrub=""
+            data-sc-src="/videos/hero.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            disablePictureInPicture
+          />
           <div
-            className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between animate-fade-up"
-            style={{ animationDelay: "650ms" }}
+            className="absolute inset-0"
+            style={{
+              transform: "translateY(calc(var(--sc-p, 0) * -30px))",
+            }}
           >
-            <p className="max-w-md text-lg leading-relaxed text-sand/90">
-              Sixty-three years, fourteen origins, one obsession. Coffee roasted
-              for sweetness and served the way it deserves.
+            <div className="scrim-b absolute inset-0" />
+            <div className="scrim-t absolute inset-x-0 top-0 h-48" />
+            {/* Extra density behind the eyebrow/copy column: the scrub clip
+                paints brighter live frames here than the old static poster did. */}
+            <div
+              className="absolute inset-y-0 left-0 w-full sm:w-2/3 lg:w-3/5"
+              style={{
+                background:
+                  "linear-gradient(to right, color-mix(in srgb, var(--ink) 88%, transparent) 0%, color-mix(in srgb, var(--ink) 82%, transparent) 30%, color-mix(in srgb, var(--ink) 55%, transparent) 55%, transparent 100%)",
+              }}
+            />
+            {/* Extra density behind the bottom-right button row: the outline
+                button has no fill of its own, so its label sits directly on
+                whatever the clip shows there. */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-56"
+              style={{
+                background:
+                  "linear-gradient(to top, color-mix(in srgb, var(--ink) 78%, transparent) 0%, transparent 100%)",
+              }}
+            />
+          </div>
+
+          <div
+            className="relative mx-auto w-full max-w-7xl px-5 pb-20 pt-40 sm:px-8 sm:pb-28"
+            data-sc-parallax="0.3"
+          >
+            <p
+              className="eyebrow inline-block"
+              data-sc-cue="0 0.7 0"
+              style={{ textShadow: "0 1px 8px rgba(0,0,0,0.9)" }}
+            >
+              Roasted in {site.city} · Est. {site.founded}
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Button href="/products">Explore the portfolio</Button>
-              <Button href="/roastery" variant="outline">
-                See how it&apos;s made
-              </Button>
+            <h1
+              className="display mt-6 max-w-5xl text-6xl text-cream sm:text-8xl lg:text-[9.5rem]"
+              data-sc-cue="0 0.7 0"
+              data-sc-kinetic="lines"
+            >
+              Gold standard,
+              <br />
+              <em>cup after cup.</em>
+            </h1>
+            <div className="mt-10 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+              <p
+                className="max-w-md text-lg leading-relaxed text-cream"
+                data-sc-cue="0 0.7 0"
+                style={{ textShadow: "0 1px 10px rgba(0,0,0,0.9)" }}
+              >
+                Sixty-three years, fourteen origins, one obsession. Coffee
+                roasted for sweetness and served the way it deserves.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <Button href="/products">Explore the portfolio</Button>
+                <Button href="/roastery" variant="outline">
+                  See how it&apos;s made
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div
-          className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-sand/70 sm:flex"
-          aria-hidden
-        >
-          <span className="text-[0.6rem] tracking-[0.3em] uppercase">
-            Scroll
-          </span>
-          <span className="block h-10 w-px animate-scroll-hint bg-gradient-to-b from-gold to-transparent" />
         </div>
       </section>
 
@@ -125,7 +166,9 @@ export default function Home() {
               delay={i * 100}
               className="bg-ink px-6 py-10 sm:px-10"
             >
-              <p className="display text-5xl text-gold sm:text-6xl">{s.value}</p>
+              <p className="display text-5xl text-gold sm:text-6xl">
+                <span data-sc-count={`0 ${s.value}`}>0</span>
+              </p>
               <p className="mt-3 text-xs tracking-[0.2em] uppercase text-muted">
                 {s.label}
               </p>
@@ -227,25 +270,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ───────────── Full-bleed quote video ───────────── */}
-      <section className="relative flex min-h-[80svh] items-center overflow-hidden">
-        <VideoBackground
-          src="/videos/beans.mp4"
-          poster={img("1447933601403-0c6688de566e", 1600)}
-          rate={0.7}
-        />
-        <div className="absolute inset-0 bg-ink/55" />
-        <div className="relative mx-auto max-w-5xl px-5 py-32 text-center sm:px-8">
-          <Reveal>
-            <p className="eyebrow">From the founder&apos;s notebook, 1962</p>
-            <blockquote className="display mt-8 text-4xl text-cream sm:text-6xl lg:text-7xl">
-              “A coffee should taste like the place it came from, and the person
-              who made it. <em>Nothing else belongs in the cup.</em>”
-            </blockquote>
-            <p className="mt-8 text-sm tracking-[0.2em] uppercase text-sand/70">
-              Elio Ferrante, founder
-            </p>
-          </Reveal>
+      {/* ───────────── Founder's quote: the peak ───────────── */}
+      <section
+        id="founder-quote"
+        data-sc-act="scrub"
+        data-sc-span="3"
+        data-sc-dwell="0.5"
+        className="relative"
+      >
+        <div data-sc-stage className="flex items-center overflow-hidden">
+          <img
+            className="sc-stage__poster absolute inset-0 h-full w-full object-cover"
+            src={img("1447933601403-0c6688de566e", 1600)}
+            alt=""
+          />
+          <video
+            data-sc-scrub=""
+            data-sc-src="/videos/beans.mp4"
+            className="absolute inset-0 h-full w-full object-cover"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            disablePictureInPicture
+          />
+          <div className="absolute inset-0 bg-ink/55" />
+          <div className="relative mx-auto max-w-5xl px-5 py-32 text-center sm:px-8">
+            <div data-sc-cue="0 0.85 0">
+              <p className="eyebrow">From the founder&apos;s notebook, 1962</p>
+              <blockquote
+                className="display mt-8 text-4xl text-cream sm:text-6xl lg:text-7xl"
+                data-sc-kinetic="lines"
+              >
+                “A coffee should taste like the place it came from, and the
+                person who made it. <em>Nothing else belongs in the cup.</em>”
+              </blockquote>
+              <p className="mt-8 text-sm tracking-[0.2em] uppercase text-sand/70">
+                Elio Ferrante, founder
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -415,6 +479,6 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
-    </>
+    </ScrollCraft>
   );
 }

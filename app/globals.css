@@ -15,6 +15,16 @@
   --background: var(--ink);
   --foreground: var(--cream);
   color-scheme: dark;
+
+  /* scrollcraft theme tokens */
+  --sc-canvas: var(--ink);
+  --sc-surface: var(--espresso);
+  --sc-ink: var(--cream);
+  --sc-ink-soft: var(--sand);
+  --sc-accent: var(--gold);
+  --sc-accent-ink: var(--ink);
+  --sc-font-display: var(--font-cormorant), ui-serif, Georgia, serif;
+  --sc-font-text: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @theme inline {
@@ -110,6 +120,35 @@ body {
 .reveal.is-visible {
   opacity: 1;
   transform: none;
+}
+
+/* Pour line: home page signature move, a coffee-fill scroll trace */
+.pour-line {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  z-index: 55;
+  background: color-mix(in oklab, var(--cream) 8%, transparent);
+  pointer-events: none;
+}
+.pour-line__fill {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100%;
+  width: 100%;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  background: linear-gradient(to top, var(--espresso), var(--gold) 92%);
+  transition: width 260ms var(--ease-out-expo);
+}
+.pour-line.is-glowing .pour-line__fill {
+  width: 3px;
+  box-shadow: 0 0 14px 1px color-mix(in oklab, var(--gold) 70%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .pour-line__fill { transition: none; }
 }
 
 /* Hairline dividers and eyebrow labels */
