@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const channels = [
   {
     label: "Roastery",
-    lines: ["Magazzino 26, Porto Vecchio", "34132 Trieste, Italia"],
+    lines: ["Porto Novo", "34132 Trieste, Italia"],
   },
   { label: "Email", lines: [site.email] },
   { label: "Telephone", lines: [site.phone, "Mon – Fri, 09:00 – 18:00 CET"] },
