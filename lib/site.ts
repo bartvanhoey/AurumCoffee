@@ -193,7 +193,7 @@ export const stores = [
   {
     city: "Trieste",
     name: "Porto Vecchio Roastery",
-    address: "Porto Novo",
+    address: "Magazzino 26, Porto Vecchio",
     hours: "07:00 – 20:00",
     flagship: true,
     image: img("1511537190424-bbbab87ac5eb", 1200),
