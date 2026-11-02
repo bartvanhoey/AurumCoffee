@@ -3,7 +3,7 @@ import { img } from "./products";
 export const site = {
   name: "Aurum",
   fullName: "Aurum Coffee Roasters",
-  tagline: "Gold standard, cup after cup.",
+  tagline: "Premium coffee, cup after cup.",
   founded: 1962,
   city: "Trieste",
   email: "hello@aurumcoffee.example",

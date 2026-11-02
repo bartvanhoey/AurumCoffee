@@ -100,7 +100,7 @@ export default function Home() {
               data-sc-cue="0 0.7 0"
               data-sc-kinetic="lines"
             >
-              Gold standard,
+              Premium coffee,
               <br />
               <em>cup after cup.</em>
             </h1>
